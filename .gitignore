@@ -3,4 +3,5 @@ env/
 *.jpg
 *.png
 *.csv
-
+.vscode
+__pycache__
