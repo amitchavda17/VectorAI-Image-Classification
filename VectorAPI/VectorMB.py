@@ -26,14 +26,14 @@ class VMessenger:
             message (str): data/message
             topic ([type], optional): [description]. Defaults to None.
         """
-        # self.create_sender()
+        self.create_sender()
         if encode:
             message = message.encode()
         if not topic:
             topic = self.topic
         self.producer.send(topic, message)
         self.producer.flush()
-        # self.producer.close()
+        self.producer.close()
 
     def send_message_batch(self, message_list, topic=None, encode=True):
         """sends batch of message to kafka topic
