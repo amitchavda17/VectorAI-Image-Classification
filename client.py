@@ -7,12 +7,7 @@ import numpy as np
 from tensorflow.keras.datasets import fashion_mnist
 
 from VectorAPI.VectorMB import VMessenger
-
-
-def array_to_base64(arr):
-    # arr = arr.tobytes()
-    arr_base64 = base64.b64encode(arr)
-    return arr_base64
+from utils.image_conversion import *
 
 
 def send_image(
@@ -21,6 +16,14 @@ def send_image(
     topic="ReqQueue",
     server="localhost:9092",
 ):
+    """Send images to Kafka for inference
+
+    Args:
+        img_array (np.array, optional): image array. Defaults to None.
+        img_path ([type], optional): path to img_file. Defaults to None.
+        topic (str, optional): Kafka topic. Defaults to "ReqQueue".
+        server (str, optional): Kafka server url. Defaults to "localhost:9092".
+    """
 
     # setup message generator
     sender_clinet = VMessenger(topic, server)
