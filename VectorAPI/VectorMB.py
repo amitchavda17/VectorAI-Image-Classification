@@ -87,7 +87,7 @@ class VMessenger:
         messages = []
 
         for msg in self.consumer:
-            messages.append[msg.value.decode()]
+            messages.append(msg.value)
         self.consumer.commit()
         return messages
 
