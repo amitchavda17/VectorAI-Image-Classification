@@ -9,8 +9,11 @@ from tensorflow.keras import callbacks, optimizers
 from tensorflow.keras.datasets import fashion_mnist
 from tensorflow.keras.layers import *
 from tensorflow.keras.models import Model, Sequential, load_model
-from tensorflow.keras.preprocessing.image import (ImageDataGenerator,
-                                                  array_to_img, img_to_array)
+from tensorflow.keras.preprocessing.image import (
+    ImageDataGenerator,
+    array_to_img,
+    img_to_array,
+)
 from tensorflow.keras.utils import to_categorical
 
 
@@ -221,6 +224,7 @@ class VectorCNN:
     ):
         if img_array.all() != None:
             x = img_array.astype("float32") / 255.0
+            x = np.expand_dims(x, axis=0)
             y_pred = self.model.predict(x)
             y_pred = np.argmax(y_pred, axis=1)
 
