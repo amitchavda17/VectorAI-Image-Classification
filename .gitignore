@@ -5,3 +5,5 @@ env/
 *.csv
 .vscode
 __pycache__
+.ipynb_checkpoints
+kafka_test.ipynb
