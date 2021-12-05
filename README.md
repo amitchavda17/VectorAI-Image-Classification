@@ -33,5 +33,24 @@ B) API to send receive messages via message brokers:
 
     
 C) Serve ML models using message broking
-    #TODO
+   - Client : sends images to kafka for processing
+   ```client.py``` randomly picks images from fashion_mnist datasets and sends to Kafka **ReqQueue** for inference
+
+   - Server : Fetches data from Kafka and runs infenrece using pretrained model 
+    i)```api_server.py``` runs  process_stream_data which keeps looking for new data in topic and sends the received images for predections in async mode 
+        ii) Model predections are printed in terminal as logs
+        iii) After that model predections are sent to 'Results' topic on Kafka which can be fetched by any subsriber.
+        iv) start inference application to fetch and proces images
+        ```
+        python api_server.py
+        ```
+        v) send data for inference to Kafka
+        ```
+        python client.py
+        ```
+
+    
+
+
+   
     
