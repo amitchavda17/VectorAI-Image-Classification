@@ -32,7 +32,7 @@ classifier_model.load_model("./snapshots/fmnist_weights.h5")
 
 # create response clinet for sending predections to "Results" topic
 response_client = VMessenger(topic="Results", server="localhost:9092")
-
+response_client.create_sender()
 # send predections to Results
 async def post_results(client=response_client, message=""):
     """Sends model predection to message broker using Vmessage
