@@ -19,7 +19,7 @@ class VMessenger:
         """Initialize Kafka producer for sending messages"""
         self.producer = KafkaProducer(bootstrap_servers=[self.server])
 
-    def send_message(self, message, topic=None):
+    def send_message(self, message, topic=None, encode=True):
         """sends message to selected Kafka topic
 
         Args:
@@ -27,14 +27,15 @@ class VMessenger:
             topic ([type], optional): [description]. Defaults to None.
         """
         # self.create_sender()
-        message = message.encode()
+        if encode:
+            message = message.encode()
         if not topic:
             topic = self.topic
         self.producer.send(topic, message)
         self.producer.flush()
         # self.producer.close()
 
-    def send_message_batch(self, message_list, topic=None):
+    def send_message_batch(self, message_list, topic=None, encode=True):
         """sends batch of message to kafka topic
 
         Args:
@@ -45,7 +46,8 @@ class VMessenger:
         if not topic:
             topic = self.topic
         for message in message_list:
-            message = message.encode()
+            if encode:
+                message = message.encode()
             self.producer.send(topic, message)
         self.producer.flush()
         self.producer.close()

@@ -1,17 +1,17 @@
-import os
-import matplotlib.pyplot as plt
-import random
 import collections
+import os
+import random
+
+import matplotlib.pyplot as plt
 import numpy as np
 import tensorflow as tf
-from tensorflow.keras.utils import to_categorical
+from tensorflow.keras import callbacks, optimizers
+from tensorflow.keras.datasets import fashion_mnist
 from tensorflow.keras.layers import *
 from tensorflow.keras.models import Model, Sequential, load_model
-from tensorflow.keras import optimizers
-from tensorflow.keras import callbacks
-from tensorflow.keras.datasets import fashion_mnist
-from tensorflow.keras.preprocessing.image import img_to_array, array_to_img
-from tensorflow.keras.preprocessing.image import ImageDataGenerator
+from tensorflow.keras.preprocessing.image import (ImageDataGenerator,
+                                                  array_to_img, img_to_array)
+from tensorflow.keras.utils import to_categorical
 
 
 class VectorCNN:
