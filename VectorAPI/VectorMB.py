@@ -26,14 +26,14 @@ class VMessenger:
             message (str): data/message
             topic ([type], optional): [description]. Defaults to None.
         """
-        self.create_sender()
+        #self.create_sender()
         if encode:
             message = message.encode()
         if not topic:
             topic = self.topic
         self.producer.send(topic, message)
         self.producer.flush()
-        self.producer.close()
+        #self.producer.close()
 
     def send_message_batch(self, message_list, topic=None, encode=True):
         """sends batch of message to kafka topic
@@ -42,7 +42,7 @@ class VMessenger:
             message_list (List[str]): list of string messages
             topic (str, optional): topic where message will be sent . Defaults to None.
         """
-        self.create_sender()
+        #self.create_sender()
         if not topic:
             topic = self.topic
         for message in message_list:
@@ -50,7 +50,7 @@ class VMessenger:
                 message = message.encode()
             self.producer.send(topic, message)
         self.producer.flush()
-        self.producer.close()
+       # self.producer.close()
 
     def create_receiver(self, topic=None):
         """Initialze Kaka consumer for reading message stream from topic
