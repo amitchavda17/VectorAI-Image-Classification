@@ -22,8 +22,11 @@ A) Build Image Classifier and Library
 B) API to send receive messages via message brokers:
 
    - Install Apache Kafka on your localsystem and run on ```localhost:9029``` 
+     or Setup pubsub from google
    - We use ```kafka-python``` library for communicating with Apache Kafka server
+   - we use gcloud python library for communicating with pubsub
    - Creating ```VectorAPI``` for simplying message transfers via Kafka
+    **note : the system by default uses kafka but pubsub can be used by selecting the broker as pubsub while initializing VMessager**
    ```python
    from VectorAPI.VectorMB import VMessenger
 
