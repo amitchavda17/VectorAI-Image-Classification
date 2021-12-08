@@ -31,7 +31,7 @@ classifier_model = VectorCNN(mode="inference")
 classifier_model.load_model("./snapshots/fmnist_weights.h5")
 
 # create response clinet for sending predections to "Results" topic
-response_client = VMessenger(topic="Results", server="localhost:9092")
+response_client = VMessenger(topic="Results")
 response_client.create_sender()
 # send predections to Results
 async def post_results(client=response_client, message=""):
@@ -59,14 +59,13 @@ async def run_inference(input_img, model=classifier_model):
     await post_results(response_client, message=predection)
 
 
-async def process_datastream(topic="ReqQueue", server="localhost:9092"):
+async def process_datastream(topic="ReqQueue"):
     """Processor data from Request Queue
 
     Args:
         topic (str, optional): Kafka topic with images. Defaults to "ReqQueue".
-        server (str, optional): kafka server url. Defaults to "localhost:9092".
     """
-    receiver_client = VMessenger(topic=topic, server=server)
+    receiver_client = VMessenger(topic=topic)
     receiver_client.create_receiver()
     print("Inference api activated looking for data in Request Queue...")
     while True:

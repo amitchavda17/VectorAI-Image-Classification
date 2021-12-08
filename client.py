@@ -14,7 +14,6 @@ def send_image(
     img_array=None,
     img_path=None,
     topic="ReqQueue",
-    server="localhost:9092",
 ):
     """Send images to Kafka for inference
 
@@ -22,7 +21,6 @@ def send_image(
         img_array (np.array, optional): image array. Defaults to None.
         img_path ([type], optional): path to img_file. Defaults to None.
         topic (str, optional): Kafka topic. Defaults to "ReqQueue".
-        server (str, optional): Kafka server url. Defaults to "localhost:9092".
     """
 
     # setup message generator
